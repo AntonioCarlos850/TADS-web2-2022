@@ -2,8 +2,7 @@ from datetime import datetime
 
 
 class Cliente:
-    def __init__(self, id, nome, cpf, cep, telefone, senha, data_nasc, email):
-        self.id = id
+    def __init__(self, nome, cpf, cep, telefone, senha, data_nasc, email):
         self.nome = nome
         self.cpf = cpf
         self.cep = cep
@@ -14,7 +13,6 @@ class Cliente:
 
 
 class Produto:
-    def __init__(self, id, nome, marca):
-        self.id = id
+    def __init__(self, nome, marca):
         self.nome = nome
         self.marca = marca
