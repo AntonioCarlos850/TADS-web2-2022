@@ -11,3 +11,10 @@ class Cliente:
         self.senha = senha
         self.data_nasc = data_nasc
         self.email = email
+
+
+class Produto:
+    def __init__(self, id, nome, marca):
+        self.id = id
+        self.nome = nome
+        self.marca = marca
