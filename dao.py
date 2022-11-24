@@ -2,7 +2,7 @@ from database import Database
 from entidades import Cliente, Produto
 
 
-class ClienteDto:
+class ClienteDao:
     def __init__(self) -> None:
         pass
 
@@ -20,12 +20,12 @@ class ClienteDto:
         return res.fetchall()
 
 
-class ProdutoDto:
+class ProdutoDao:
     def save(self, produto: Produto):
         conn = Database.get_connection()
         conn.execute(
-            "INSERT INTO produtos (nome, marca) VALUES (?, ?)",
-            (produto.nome, produto.marca))
+            "INSERT INTO produtos (nome, marca, preco) VALUES (?, ?, ?)",
+            (produto.nome, produto.marca, produto.preco))
         conn.commit()
         conn.close()
 
@@ -37,15 +37,10 @@ class ProdutoDto:
 
 if __name__ == '__main__':
     Database.create_db()
-    produto = Produto("teste", "marca teste")
-    dto = ProdutoDto()
-    dto.save(produto)
-    res = dto.all()
+    dao = ProdutoDao()
+    res = dao.all()
     print(res)
 
-    cliente = Cliente("nome do cliente", "78965412300",
-                      "85856350", "45988552234", "9874", 1054085801000, "antoniocarlos@gmail.com")
-    clienteDto = ClienteDto()
-    clienteDto.save(cliente)
-    res = clienteDto.all()
+    clienteDao = ClienteDao()
+    res = clienteDao.all()
     print(res)

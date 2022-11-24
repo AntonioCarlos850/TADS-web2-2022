@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<form action="/produto/create" method="post" class="row justify-content-center align-content-center">
+    <div class="col-lg-4 col-sm-10 mb-3 px-5">
+        <label for="name" class="form-label">Nome</label>
+        <input type="text" class="form-control" required name="name" id="name" placeholder="Nome de produto">
+    </div>
+    <div class="col-lg-4 col-sm-10 mb-3 px-5">
+        <label for="brand" class="form-label">Marca</label>
+        <input type="text" class="form-control" required name="brand" id="brand" placeholder="Nome da marca">
+    </div>
+    <div class="col-lg-4 col-sm-10 mb-3 px-5">
+        <label for="price" class="form-label">Preço</label>
+        <input type="number" class="form-control" step="0.01" required name="price" id="price" placeholder="Preço do produto">
+    </div>
+    <div class="col-12 d-flex justify-content-center">
+        <button type="submit" width class="btn btn-success">Criar</button>
+    </div>
+</form>
+{% endblock %}

@@ -17,12 +17,13 @@ CREATE TABLE produtos(
     id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
     nome text NOT NULL,
     marca text NOT NULL,
+    preco float NOT NULL,
     data_cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO produtos (nome, marca)
-VALUES ('arroz', 'sabor sul'), 
-    ('feijao', 'sabor sul');
+INSERT INTO produtos (nome, marca, preco)
+VALUES ('arroz', 'sabor sul', 18.5), 
+    ('feijao', 'sabor sul', 10.5);
 
 INSERT INTO clientes (nome, cpf, cep, telefone, senha, data_nasc,email)
 VALUES

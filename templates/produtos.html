@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Preco</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in products %}
+                <tr>
+                    <th scope="row">{{p.id}}</th>
+                    <td>{{p.name}}</td>
+                    <td>{{p.brand}}</td>
+                    <td>{{p.price}}</td>
+                </tr>
+            {% else %}
+                'No items'
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

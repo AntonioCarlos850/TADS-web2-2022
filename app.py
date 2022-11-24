@@ -3,9 +3,10 @@ import random
 import string
 from flask import Flask, render_template, request
 from datetime import datetime
+from dao import ProdutoDao
 
 # IMPORTAR a classe Cliente do arquivo entidades.py
-from entidades import Cliente
+from entidades import Cliente, Produto
 
 # criado o servidor web (flask)
 app = Flask(__name__)
@@ -32,6 +33,24 @@ def index():
     success = "Usuário criado: "+str(cliente.nome)
     return render_template('index.html', success=success)
 
+@app.route("/produto")
+def produto():
+    return render_template('produto.html')
+
+@app.route("/produtos")
+def produtos():
+     
+    produtos = [{"id": p[0], "name": p[1], "brand": p[2], "price": p[3]} for p in ProdutoDao().all()]
+    
+    print(produtos)
+    return render_template('produtos.html', products=produtos)
+
+@app.post('/produto/create')
+def create():
+    produto = Produto(request.form.get('name'), request.form.get('brand'), request.form.get('price'))
+    dao = ProdutoDao()
+    dao.save(produto)
+    return produtos()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
