@@ -1,41 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/" method="post" class="row justify-content-center align-content-center">
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" required name="name" id="name" placeholder="Nome de usuário">
+<div class="container">
+    <div id="jumbo" class="jumbotron">
+        <h1>INDEX</h2>
+        <p>funcionalidades principais</p>
     </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="password" class="form-label">Senha</label>
-        <input type="password" class="form-control" required name="password" id="password" placeholder="Senha">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="password-conf" class="form-label">Confirmação da senha</label>
-        <input type="password" class="form-control" required name="password-conf" id="password-conf"
-            placeholder="Confirmação da Senha" autocomplete="off">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="cep" class="form-label">Cep</label>
-        <input type="text" class="form-control" required name="cep" id="cep" placeholder="Cep">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="email" class="form-label">Email</label>
-        <input type="email" class="form-control" required name="email" id="email" placeholder="abc@mail.com">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="cpf" class="form-label">CPF</label>
-        <input type="text" class="form-control" required name="cpf" id="cpf" placeholder="000-000-000.00">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="nasc" class="form-label">Data de nascimeto</label>
-        <input type="date" class="form-control" required name="nasc" id="nasc" placeholder="28/05/2001">
-    </div>
-    <div class="col-lg-6 col-sm-10 mb-3 px-5">
-        <label for="tel" class="form-label">Telefone</label>
-        <input type="text" class="form-control" required name="tel" id="tel" placeholder="(45) 9 9898-4545">
-    </div>
-    <div class="col-3 d-flex justify-content-center">
-        <button type="submit" width class="btn btn-success">Criar</button>
-    </div>
-</form>
+</div>
 {% endblock %}

@@ -1,20 +1,46 @@
 {% extends "layout.html" %}
 {% block content %}
-<form action="/produto/create" method="post" class="row justify-content-center align-content-center">
-    <div class="col-lg-4 col-sm-10 mb-3 px-5">
-        <label for="name" class="form-label">Nome</label>
-        <input type="text" class="form-control" required name="name" id="name" placeholder="Nome de produto">
+
+<ul class="page-nav">
+    <li>
+        <a class="btn btn-outline-success" href="{{ url_for('produto_index') }}">Listar</a>
+    </li>
+</ul>
+
+{% if produto %}
+    <h1><u>Atualizar</u> produto</h1>
+{% else %}
+    <h1>Cadastro produto</h1>
+{% endif %}
+
+
+<form class="crud c2" action="/produto/{{action}}" method="POST">
+
+    <input type="hidden" value={{produto.id}} name="id">
+
+    <div class="form-group">
+        <label for="nome">nome</label>
+        <input value="{{produto.nome}}" type="text" class="form-control" name="nome" id="nome" required autocomplete="off">
     </div>
-    <div class="col-lg-4 col-sm-10 mb-3 px-5">
-        <label for="brand" class="form-label">Marca</label>
-        <input type="text" class="form-control" required name="brand" id="brand" placeholder="Nome da marca">
+
+    <div class="form-group">
+        <label for="preco">preco</label>
+        <input value="{{produto.preco}}" type="number" class="form-control" name="preco" id="preco" required step="0.01">
     </div>
-    <div class="col-lg-4 col-sm-10 mb-3 px-5">
-        <label for="price" class="form-label">Preço</label>
-        <input type="number" class="form-control" step="0.01" required name="price" id="price" placeholder="Preço do produto">
+
+    <div class="form-group">
+        <label for="marca">marca</label>
+        <input value="{{produto.marca}}" type="text" class="form-control" name="marca" id="marca" placeholder="Intel">
     </div>
-    <div class="col-12 d-flex justify-content-center">
-        <button type="submit" width class="btn btn-success">Criar</button>
-    </div>
+    <div></div>
+
+    {% if produto %}
+    <button type="submit" class="btn btn-danger">Atualizar</button>
+    {% else %}
+    <button type="submit" class="btn btn-primary">cadastrar</button>
+    {% endif %}
+
+
 </form>
+
 {% endblock %}

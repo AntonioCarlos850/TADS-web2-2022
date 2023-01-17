@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block content %}
+<main>
+    <h2>Lista de favoritos</h2>
+    <h5>Total: {{favoritos|selectattr('id')|list|length}}/{{total}}</h5>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Usuário</th>
+                <th>Nome do produto</th>
+                <th>Marca do produto</th>
+                <th class="actions">⌘</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for favorito in favoritos %}
+            <tr>
+                <td>{{favorito.id}}</td>
+                <td>
+                    {{favorito.cliente_nome}}
+                </td>
+                <td>{{favorito.produto_nome}}</td>
+                <td>{{favorito.produto_marca}}</td>
+
+                <td class="actions">
+                    <a title="deletar" class="btn btn-danger" 
+                    href="{{ url_for('favoritos_delete', id=favorito.id) }}">
+                        <i class="bi bi-x-circle"></i>
+                    </a>
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
+{% endblock %}

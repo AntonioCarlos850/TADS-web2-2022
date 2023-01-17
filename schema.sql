@@ -1,33 +1,50 @@
-DROP TABLE IF EXISTS clientes;
-DROP TABLE IF EXISTS produtos;
+DROP TABLE IF EXISTS cliente;
+DROP TABLE IF EXISTS produto;
 
-CREATE TABLE clientes(
+CREATE TABLE cliente(
+    -- chave primaria --
     id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    nome text NOT NULL,
-    cpf text NOT NULL,
-    cep text NOT NULL,
-    telefone text NOT NULL,
-    senha text NOT NULL,
-    data_nasc TIMESTAMP NOT NULL,
-    email text NOT NULL,
+    nome varchar(80) NOT NULL,
+    cpf varchar(20),
+    cep varchar(20),
+    email varchar(80) NOT NULL,
     data_cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
-CREATE TABLE produtos(
-    id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
-    nome text NOT NULL,
-    marca text NOT NULL,
-    preco float NOT NULL,
-    data_cadastro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-
-INSERT INTO produtos (nome, marca, preco)
-VALUES ('arroz', 'sabor sul', 18.5), 
-    ('feijao', 'sabor sul', 10.5);
-
-INSERT INTO clientes (nome, cpf, cep, telefone, senha, data_nasc,email)
+-- CREATE
+INSERT INTO cliente (nome, cpf, cep, email)
 VALUES
-    ('admin','08695741235', '1002000','45998194884', '1234', 1054085801000, 'admin@test.org'),
-    ('Maria Silver', '08695741235', '1002000','45998194884', '1234', 1054085801000, 'admin@test.org'),
-    ('Jairo Carlile', '08695741235', '1002000','45998194884', '1234', 1054085801000, 'admin@test.org'),
-    ('Marcos Oliva', '08695741235', '1002000','45998194884', '1234', 1054085801000, 'admin@test.org');
+    ('admin', '1002000', '85850-100', 'admin@test.org'),
+    ("Maria Silver", "949.282.111-82", '85850-900', "mariam@test.org"),
+    ("Jairo Carlile", "144.217.577-11", '85850-400', "carlile@test.org"),
+    ("Marcos Oliva", "433.144.644-52", '85850-200', "marcos@test.org");
+
+CREATE TABLE produto(
+    -- chave primaria --
+    id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+    nome varchar(60) NOT NULL,
+    preco decimal(10,2),
+    marca varchar(40),
+    added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+-- CREATE
+INSERT INTO produto (nome, preco, marca)
+VALUES
+    ('Ryzen 5700x', 102, 'AMD'),
+    ('i9 13700k', 2210.91, 'Intel'),
+    ('Samsung galaxy s30', 311, 'Samsung');
+    
+CREATE TABLE cliente_produto(
+    id integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+    added TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    produto_id INTEGER,
+    cliente_id INTEGER,
+    FOREIGN KEY(produto_id) REFERENCES produto(id),
+    FOREIGN KEY(cliente_id) REFERENCES cliente(id)
+);
+
+-- CREATE
+INSERT INTO cliente_produto (produto_id, cliente_id)
+VALUES
+    (1, 1),
+    (2, 1),
+    (3, 1);
